@@ -1,0 +1,10 @@
+services:
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=ipsenwrc-backend'
+      - 'MYSQL_PASSWORD=moos'
+      - 'MYSQL_ROOT_PASSWORD=root'
+      - 'MYSQL_USER=moos'
+    ports:
+      - '3306'
