@@ -8,7 +8,7 @@ services:
     depends_on:
       - db
     environment:
-      - spring.datasource.url=jdbc:mysql://db/iprwc-backend-2025?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      - spring.datasource.url=jdbc:mariadb://db/iprwc-backend-2025?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
       - spring.datasource.username=moos
       - spring.datasource.password=moos
   db:
