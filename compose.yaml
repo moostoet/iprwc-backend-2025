@@ -6,7 +6,9 @@ services:
     networks:
       - springapimysql
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+        restart: true
     environment:
       - spring.datasource.url=jdbc:mariadb://db/iprwc-backend-2025?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
       - spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
@@ -22,8 +24,15 @@ services:
       - 'MYSQL_USER=moos'
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./healthcheck.sh:/healthcheck.sh
     networks:
       - springapimysql
+    healthcheck:
+      test: ["CMD", "/healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
 networks:
   springapimysql:
