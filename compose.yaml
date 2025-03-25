@@ -1,6 +1,6 @@
 services:
   app:
-    build: .
+    image: ghcr.io/moostoet/iprwc-backend-2025:latest
     ports:
       - "8080:8080"
     networks:
