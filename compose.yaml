@@ -12,7 +12,7 @@ services:
       - spring.datasource.username=moos
       - spring.datasource.password=moos
   db:
-    image: 'mysql:latest'
+    image: 'linuxserver/mariadb:latest'
     restart: always
     environment:
       - 'MYSQL_DATABASE=iprwc-backend-2025'
@@ -21,8 +21,13 @@ services:
       - 'MYSQL_USER=moos'
     ports:
       - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
     networks:
       - springapimysql
 
 networks:
   springapimysql:
+
+volumes:
+  mysql-data:
